@@ -13,3 +13,18 @@ cat <<EOF > /tmp/node4_targets.xml
   </Target>
 </Targets>
 EOF
+
+
+  -------
+
+grep 'TYPE="host"' /tmp/node4_targets.xml > /tmp/target_host.xml
+grep 'TYPE="oracle_emd"' /tmp/node4_targets.xml > /tmp/target_emd.xml
+
+cat <<EOF > /tmp/target_home.xml
+<Target TYPE="oracle_home" NAME="agent24c1_4_DCMSMIGRATE-IT-ATM-DB04-PR_5734" DISPLAY_NAME="agent24c1_4_DCMSMIGRATE-IT-ATM-DB04-PR_5734" AGENT_GUID="$(openssl rand -hex 16 | tr 'a-f' 'A-F')">
+  <Property NAME="HOME_TYPE" VALUE="O"/>
+  <Property NAME="INVENTORY" VALUE="/u01/app/oraInventory"/>
+  <Property NAME="INSTALL_LOCATION" VALUE="/oem_agent/Agent24ai/agent_24.1.0.0.0"/>
+</Target>
+EOF
+
