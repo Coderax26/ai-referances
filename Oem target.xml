@@ -1,0 +1,15 @@
+GUID1=$(openssl rand -hex 16 | tr 'a-f' 'A-F')
+GUID2=$(openssl rand -hex 16 | tr 'a-f' 'A-F')
+GUID3=$(openssl rand -hex 16 | tr 'a-f' 'A-F')
+
+cat <<EOF > /tmp/node4_targets.xml
+<Targets>
+  <Target TYPE="host" NAME="DCMSMIGRATE-IT-ATM-DB04-PR" DISPLAY_NAME="DCMSMIGRATE-IT-ATM-DB04-PR" AGENT_GUID="${GUID1}"/>
+  <Target TYPE="oracle_emd" NAME="DCMSMIGRATE-IT-ATM-DB04-PR:1803" DISPLAY_NAME="DCMSMIGRATE-IT-ATM-DB04-PR:1803" EMD_URL="https://DCMSMIGRATE-IT-ATM-DB04-PR:1803/emd/main/" AGENT_GUID="${GUID2}"/>
+  <Target TYPE="oracle_home" NAME="agent24c1_4_DCMSMIGRATE-IT-ATM-DB04-PR_5734" DISPLAY_NAME="agent24c1_4_DCMSMIGRATE-IT-ATM-DB04-PR_5734" AGENT_GUID="${GUID3}">
+    <Property NAME="HOME_TYPE" VALUE="O"/>
+    <Property NAME="INVENTORY" VALUE="/u01/app/oraInventory"/>
+    <Property NAME="INSTALL_LOCATION" VALUE="/oem_agent/Agent24ai/agent_24.1.0.0.0"/>
+  </Target>
+</Targets>
+EOF
